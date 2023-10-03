@@ -1,0 +1,37 @@
+{% extends 'ip_manager/base.html' %}
+
+{% block title %}IP - менеджер{% endblock %}
+
+{% block content %}
+    {% if query_results %}
+        <ul>
+        {% for Network in query_results %}
+
+            <div class="card mb = 4">
+                <div class="card-header">
+                    New network:
+                </div>
+                <div class="card-body">
+                <h5 class="card-title">{{ Network.network_address }}</h5>
+                <p class="card-text">{{ Network.uuid }}</p>
+                {% comment %} Добавить ссылки на удаление/выделение адреса {% endcomment %}
+                <a href="#" class="btn btn-ligth">Delete</a>
+                <a href="#" class="btn btn-ligth">Allocate adress</a>
+                </div>
+            </div>
+
+        {% endfor %}
+        
+        </ul>
+    {% else %}
+        <ul>
+        {% for DedicatedAddreses in dedicated_query_results %}
+            <div class= "results">
+                <h5>{{ DedicatedAddreses.dedicated_address }}</h5>
+                <h5>{{ DedicatedAddreses.dedicated_uuid }}</h5>
+                <h5>{{ DedicatedAddreses.address_date }}</h5>
+            </div>
+        {% endfor %}
+        </ul>
+{% endif %}
+{% endblock %}
